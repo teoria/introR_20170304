@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Dplyr + GGPlot2. 
+
+
+### Bibliotecas
+```{r}
+library(dplyr)
+library(ggplot2)
+
+```
+
+###Base de dados
+```{r}
+base <- airquality
+head(base)
+
+```
+
+```{r}
+
+dados_mes5 <- base %>% filter( Month == 5 )
+
+g <- ggplot( dados_mes5 , aes ( Day , Temp ))
+
+#Gráfico de ponto
+g + geom_point()
+
+#Gráfico de linha
+g + geom_line()
+
+
+
+```
+
+```{r}
+
+#histograma
+g <- ggplot( dados_mes5 , aes ( Temp ))
+g + geom_bar()
+```
+
+```{r}
+
+
+g <- ggplot( dados_mes5 , aes ( Day , Temp ))
+g + geom_bar( stat = "identity") + geom_line()
+```

@@ -1,0 +1,134 @@
+---
+title: "Reletório do AR"
+author: "R"
+date: "March 5, 2017"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Relatório 1
+
+### Description
+
+Daily air quality measurements in New York, May to September 1973.
+
+
+
+
+### Base de dados
+```{r , echo=FALSE}
+library(datasets)
+base <- airquality
+
+head( base , 10)
+
+```
+
+
+
+Daily readings of the following air quality values for May 1, 1973 (a Tuesday) to September 30, 1973.
+
+Ozone: Mean ozone in parts per billion from 1300 to 1500 hours at Roosevelt Island
+
+Solar.R: Solar radiation in Langleys in the frequency band 4000–7700 Angstroms from 0800 to 1200 hours at Central Park
+
+Wind: Average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport
+
+Temp: Maximum daily temperature in degrees Fahrenheit at La Guardia Airport.
+
+
+A base possui **`r dim(base)[1] `** observações e **`r dim(base)[2] `** variáveis.
+
+
+```{r}
+
+summary(base)
+
+```
+
+
+```{r}
+dadosValidos <- complete.cases(base) 
+
+base <- base[dadosValidos , ]
+
+
+```
+
+
+```{r}
+
+summary(base)
+
+```
+
+```{r}
+#write.csv( base , "base_airquality_limpo.csv" )
+```
+
+```{r}
+#View(base)
+```
+
+```{r}
+mes5 <- base$Month == 5
+dados_mes5 <- base[mes5 , ]
+
+plot( dados_mes5$Day , dados_mes5$Temp)
+
+```
+
+```{r}
+
+library(ggplot2)
+
+ggplot( dados_mes5 , aes( x= Day , y = Temp )  ) + geom_point() + geom_line()
+
+```
+
+```{r}
+
+
+ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) + geom_point() + geom_line()
+
+```
+
+```{r}
+
+ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) + geom_point() + geom_line() + facet_grid( Month ~ . )
+```
+
+```{r}
+ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) + geom_point() + geom_line() + facet_grid( . ~ Month )
+```
+
+
+```{r}
+ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) + geom_point() + geom_line() + facet_grid( . ~ Month )
+```
+
+
+
+```{r}
+g <- ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) 
+
+g + geom_point() + facet_grid( . ~ Month ) + geom_smooth() + labs(title = "Temperatura por dia") + xlab("Dia") + ylab("Temperatura")
+
+```
+
+
+
+```{r}
+
+mediaTemp <- mean(base$Temp)
+
+ggplot( base , aes( x= Day , y = Temp, colour = factor(Month) )  ) + geom_point() + geom_line() + facet_grid( . ~ Month ) + geom_hline(yintercept = mediaTemp)
+```
+
+

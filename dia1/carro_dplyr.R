@@ -1,11 +1,12 @@
 library(datasets)
 library( dplyr)
 
-
 ?dplyr
 
 base <- mtcars
 
+
+unique(base$am)
 
 select( base , mpg )
 filter(base , mpg >30 )

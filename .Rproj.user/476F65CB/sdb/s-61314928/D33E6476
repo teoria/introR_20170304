@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Titanic\"\nauthor: \"R\"\ndate: \"March 5, 2017\"\noutput: html_document\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n## Sobreviventes\n\n```{r}\n\nlibrary(readr)\nbase <- read_csv(\"base/train.csv\")\n\n#rm( train)\nhead( base)\n```\n\n",
+    "created" : 1488743731510.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "481069529",
+    "id" : "D33E6476",
+    "lastKnownWriteTime" : 1488743779,
+    "last_content_update" : 1488744169398,
+    "path" : "~/GitHub/turma_20170304/dia2/titanic.Rmd",
+    "project_path" : "dia2/titanic.Rmd",
+    "properties" : {
+        "last_setup_crc32" : "5C4BB171bb338d19",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

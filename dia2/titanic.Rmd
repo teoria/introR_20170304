@@ -1,0 +1,13 @@
+---
+title: "Titanic"
+author: "R"
+date: "March 5, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sobreviventes
+
