@@ -2,7 +2,7 @@
 title: "Titanic"
 author: "R"
 date: "March 5, 2017"
-output: html_document
+output: html_document 
 ---
 
 ```{r setup, include=FALSE}
@@ -10,4 +10,92 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Sobreviventes
+
+pclass: A proxy for socio-economic status (SES)
+1st = Upper
+2nd = Middle
+3rd = Lower
+
+age: Age is fractional if less than 1. If the age is estimated, is it in the form of xx.5
+
+sibsp: The dataset defines family relations in this way...
+Sibling = brother, sister, stepbrother, stepsister
+Spouse = husband, wife (mistresses and fiancés were ignored)
+
+parch: The dataset defines family relations in this way...
+Parent = mother, father
+Child = daughter, son, stepdaughter, stepson
+Some children travelled only with a nanny, therefore parch=0 for them.
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+library(readr)
+
+
+base <- read_csv("base/train.csv")
+
+#rm( train)
+head( base)
+#View(base)
+
+summary(base)
+
+```
+
+
+```{r}
+dim(base)
+
+mediaIdade <- mean(base$Age , na.rm = TRUE)
+
+sort(table((base$Age)))
+
+
+
+summary(base$Age)
+
+table(base$SibSp)
+table( base$Sex)
+
+
+criancas <- base$Age < 16
+base1 <- base[criancas, ]
+base1 <- base1[complete.cases(base1) , ]
+
+
+dim(base1)
+sum( base1$Survived )
+
+
+
+```
+
+```{r}
+
+resumo <- base %>% group_by(Sex , Survived) %>%summarise( total = n()    )
+
+resumo
+
+ggplot(resumo , aes( Sex , total ,col= factor(Survived) ) ) +
+        geom_bar(stat = "identity" )
+
+
+ggplot(resumo , aes( Sex , total ,fill= factor(Survived) ) ) +
+        geom_bar(stat = "identity" )
+
+```
+
+
+
+```{r}
+baseClasse <- base %>% 
+        filter( Survived == 1 ) %>%
+        group_by(Pclass)%>%
+        summarise( total = n() )
+
+ggplot(baseClasse , aes( Pclass , total) ) + geom_bar(stat = "identity")
+```
+
 

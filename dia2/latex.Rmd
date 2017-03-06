@@ -1,0 +1,37 @@
+---
+title: "Latex"
+author: "R"
+date: "March 6, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown + Latex
+
+
+$$ y_{ij} = b_{ij} + \beta_{0} + \beta_{1} $$
+$y = x^2$
+$$y = x^2$$
+In a document there are different types of $\textbf{commands}$ 
+that define the way the elements are displayed. This 
+commands may insert special elements: $\alpha \beta \Gamma$
+
+$\sum_{k=1}^{n} I_k = 0 \; .$
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
